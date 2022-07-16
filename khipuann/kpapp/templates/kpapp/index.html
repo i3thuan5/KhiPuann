@@ -8,12 +8,49 @@
 <body>
 	<h1>台語線頂齒盤</h1>
 	<small>Tâi-gí suànn-tíng khí-puânn</small>
-	{% for tiauho, jitin in siosia.items %}
-	<ul>
-		{% for ji, kaisueh in jitin %}
-		<li><button>{{ji}}</button></li>
+
+	<section>
+		<h2>齒鈕仔</h2>
+		{% for tiauho, jitin in siosia.items %}
+		<ul>
+			{% for ji, kaisueh in jitin %}
+			<li><button name="btn" value="{{ji}}">{{ji}}</button></li>
+			{% endfor %}
+		</ul>
 		{% endfor %}
-	</ul>
-	{% endfor %}	
+	</section>
+
+	<section>
+		<h2>結果</h2>
+		<input id="kiatko" type="text" />
+		<button onclick="piann()">摒掉</button>
+		<button onclick="khok()">Khok字</button>
+		<p id="thesi" aria-live="polite"></p>
+	</section>
+
+	<script type="text/javascript">
+		const kiatko = document.getElementById('kiatko');
+		const thesi = document.getElementById('thesi');
+
+		for(const b of document.querySelectorAll('button[name="btn"]')){
+			b.addEventListener('click', function(){
+				kiatko.value += b.value;
+			})
+		}
+		function piann(){
+			kiatko.value = '';
+		}
+		function khok(){
+			navigator.clipboard.writeText(kiatko.value).then(function() {
+			  thesi.innerText = 'Async: Copying to clipboard was successful!';
+			  setTimeout(function(){
+			    thesi.innerText = ''
+			  }, 5000);
+			}, function(err) {
+			  console.error('Async: Could not copy text: ', err);
+			});
+		}
+
+	</script>
 </body>
 </html>
