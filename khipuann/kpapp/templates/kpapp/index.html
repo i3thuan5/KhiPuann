@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='zh-hant'>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>台語線頂齒盤</title>
+</head>
+<body>
+	<h1>台語線頂齒盤</h1>
+	<small>Tâi-gí suànn-tíng khí-puânn</small>
+	{% for tiauho, jitin in siosia.items %}
+	<ul>
+		{% for ji, kaisueh in jitin %}
+		<li><button>{{ji}}</button></li>
+		{% endfor %}
+	</ul>
+	{% endfor %}	
+</body>
+</html>
