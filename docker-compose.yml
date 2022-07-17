@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - "staticfiles:/staticfiles:ro"
+    networks:
+      - default
+      - nginx-bridge
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+      - LETSENCRYPT_EMAIL=ithuan@ithuan.tw
+    restart: always
+  gunicorn:
+    build: .
+    volumes:
+      - "staticfiles:/staticfiles"
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+    restart: always
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: ithuan
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+    restart: always
+
+volumes:
+  postgres_data:
+  staticfiles:
+  
+networks:
+  nginx-bridge:
+    external: true
