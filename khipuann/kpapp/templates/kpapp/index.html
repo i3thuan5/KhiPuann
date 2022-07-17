@@ -9,7 +9,7 @@
 
 </head>
 <body class="container">
-	<header class="row justify-content-center mb-5">
+	<header class="row justify-content-center mb-4">
 		<div class="col-12 col-lg-8">
 			<h1>Khí-puânn</h1>
 			<small>台語線頂齒盤</small>
@@ -18,37 +18,43 @@
 
 	<main class="row justify-content-center mb-4">
 		<div class="col-12 col-lg-8">
-		<section class="mb-2">
-			<h2>使用說明</h2>
-			<p>下底齒揤揤--leh，羅馬字tī上尾。適合手頭猶無輸入法ê人粗用。</p>
-		</section>
-		<section class="mb-2">
-			<h2>齒</h2>
-			{% for tiauho, jitin in siosia.items %}
-			<ul class="list-inline">
-				{% for ji, kaisueh in jitin %}
-				<li class="list-inline-item"><button class="btn btn-outline-dark" name="btn" value="{{ji}}">{{ji}}</button></li>
-				{% endfor %}
-			</ul>
-			{% endfor %}
+			<section class="mb-2">
+				<h2>使用說明</h2>
+				<p>下底齒揤揤--leh，羅馬字tī上尾。適合手頭猶無輸入法ê人粗用。</p>
+			</section>
 
-			{% for tiauho, jitin in tuasia.items %}
-			<ul class="list-inline">
-				{% for ji, kaisueh in jitin %}
-				<li class="list-inline-item"><button class="btn btn-outline-dark" name="btn" value="{{ji}}">{{ji}}</button></li>
-				{% endfor %}
-			</ul>
-			{% endfor %}
-		</section>
-		<section class="mb-2">
-			<h2>羅馬字結果</h2>
-			<input id="kiatko" type="text" aria-label="文字結果" class="form-control mb-2"/>
-			<div>
-				<button onclick="piann()" class="btn btn-outline-dark">摒掉</button>
-				<button onclick="khok()" class="btn btn-outline-dark">Khok字</button>
-			</div>
-			<p id="thesi" aria-live="polite"></p>
-		</section>
+			<section class="row mb-2 ">
+				<div class="col-12 col-lg-6">
+					<h3>小寫齒</h3>
+					{% for tiauho, jitin in siosia.items %}
+					<ul class="list-inline">
+						{% for ji, kaisueh in jitin %}
+						<li class="list-inline-item"><button class="btn btn-outline-dark" name="btn" value="{{ji}}">{{ji}}</button></li>
+						{% endfor %}
+					</ul>
+					{% endfor %}	
+				</div>
+
+				<div class="col-12 col-lg-6">
+					<h3>大寫齒</h3>
+					{% for tiauho, jitin in tuasia.items %}
+					<ul class="list-inline">
+						{% for ji, kaisueh in jitin %}
+						<li class="list-inline-item"><button class="btn btn-outline-dark" name="btn" value="{{ji}}">{{ji}}</button></li>
+						{% endfor %}
+					</ul>
+					{% endfor %}	
+				</div>
+			</section>
+			<section class="mb-2">
+				<h2>羅馬字結果</h2>
+				<input id="kiatko" type="text" aria-label="文字結果" class="form-control mb-2"/>
+				<div>
+					<button onclick="piann()" class="btn btn-outline-dark">摒掉</button>
+					<button onclick="khok()" class="btn btn-outline-dark">Khok字</button>
+				</div>
+				<p id="thesi" aria-live="polite"></p>
+			</section>
 		</div>
 	</main>
 
