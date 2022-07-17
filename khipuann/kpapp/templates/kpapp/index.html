@@ -54,10 +54,7 @@
 			<section class="mb-2">
 				<h2>羅馬字結果</h2>
 				<input id="kiatko" type="text" aria-label="文字結果" class="form-control mb-2"/>
-				<div>
-					<button onclick="piann()" class="btn btn-outline-dark">摒掉</button>
-					<button onclick="khok()" class="btn btn-outline-dark">Khok字</button>
-				</div>
+				<button onclick="khok()" class="btn btn-outline-dark">Khok字</button>
 				<p id="thesi" aria-live="polite"></p>
 			</section>
 		</div>
@@ -92,9 +89,6 @@
 				kiatko.selectionStart = sinui;
 				kiatko.selectionEnd = sinui;
 				kiatko.focus();
-		}
-		function piann(){
-			kiatko.value = '';
 		}
 		function khok(){
 			navigator.clipboard.writeText(kiatko.value).then(function() {
