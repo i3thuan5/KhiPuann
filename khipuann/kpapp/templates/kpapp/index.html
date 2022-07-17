@@ -30,25 +30,12 @@
 
 			<section class="row mb-2 ">
 				<div class="col-12 col-lg-6">
-					<h3>小寫齒</h3>
-					{% for tiauho, jitin in siosia.items %}
-					<ul class="list-inline">
-						{% for ji, kaisueh in jitin %}
-						<li class="list-inline-item"><button class="btn btn-outline-dark" name="btn" value="{{ji}}">{{ji}}</button></li>
-						{% endfor %}
-					</ul>
-					{% endfor %}	
+					<h2>小寫齒</h2>
+					{% include 'kpapp/liu.html' with liu=siosia %}	
 				</div>
-
 				<div class="col-12 col-lg-6">
-					<h3>大寫齒</h3>
-					{% for tiauho, jitin in tuasia.items %}
-					<ul class="list-inline">
-						{% for ji, kaisueh in jitin %}
-						<li class="list-inline-item"><button class="btn btn-outline-dark" name="btn" value="{{ji}}">{{ji}}</button></li>
-						{% endfor %}
-					</ul>
-					{% endfor %}	
+					<h2>大寫齒</h2>
+					{% include 'kpapp/liu.html' with liu=tuasia %}
 				</div>
 			</section>
 			<section class="mb-2">
