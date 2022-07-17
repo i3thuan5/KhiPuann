@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: ithuan/khipuann:nginx
+    volumes:
+      - "staticfiles:/staticfiles:ro"
+    networks:
+      - default
+      - nginx-bridge
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+      - LETSENCRYPT_EMAIL=ithuan@ithuan.tw
+    restart: always
+  gunicorn:
+    image: ithuan/khipuann
+    volumes:
+      - "staticfiles:/staticfiles"
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+    networks:
+      default:
+        aliases:
+          - khipuann-gunicorn
+    restart: always
+
+volumes:
+  staticfiles:
+  
+networks:
+  nginx-bridge:
+    external: true

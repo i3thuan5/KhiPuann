@@ -18,6 +18,5 @@ from django.urls import path
 from kpapp.views import siuiah
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', siuiah),
 ]
