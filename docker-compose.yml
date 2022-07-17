@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   nginx:
-    build: ./nginx
+    image: ithuan/khipuann:nginx
     volumes:
       - "staticfiles:/staticfiles:ro"
     networks:
@@ -14,11 +14,15 @@ services:
       - LETSENCRYPT_EMAIL=ithuan@ithuan.tw
     restart: always
   gunicorn:
-    build: .
+    image: ithuan/khipuann
     volumes:
       - "staticfiles:/staticfiles"
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST:-khipuann.ithuan.tw}
+    networks:
+      default:
+        aliases:
+          - khipuann-gunicorn
     restart: always
   postgres:
     image: postgres:14
