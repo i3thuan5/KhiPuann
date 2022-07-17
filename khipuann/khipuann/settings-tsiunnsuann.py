@@ -18,15 +18,4 @@ DEBUG = False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'ithuan',
-        'HOST': 'postgres',
-        'PORT': '',
-    }
-}
-
 STATIC_ROOT = '/staticfiles/'
