@@ -1,8 +1,8 @@
 {% for tiauho, jitin in liu.items %}
 <ul class="list-inline">
-	{% for ji, kaisueh in jitin %}
+	{% for ji, te in jitin %}
 	<li class="list-inline-item">
-		<button class="btn btn-outline-dark" name="btn" value="{{ji}}" aria-label="{{ kaisueh }}">
+		<button class="btn btn-outline-dark" name="btn" value="{{ji}}" aria-label="{{ te }}第{{tiauho}}聲調">
 		{{ji}}</button>
 	</li>
 	{% endfor %}
