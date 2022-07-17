@@ -5,17 +5,22 @@ from django.shortcuts import render
 # Create your views here.
 
 
+def khuijson(tongmia):
+    ui = os.path.join(
+        os.path.dirname(__file__),
+        'jsons',
+        tongmia
+    )
+    with open(ui, 'r') as tong:
+        try:
+            tsuliau = json.load(tong)
+        except Exception:
+            tsuliau = []
+    return tsuliau
+
+
 def siuiah(request):
     context = {}
-    siosiajson = os.path.join(
-        os.path.dirname(__file__),
-        'siosia.json'
-    )
-    with open(siosiajson, 'r') as tong:
-        try:
-            siosia = json.load(tong)
-        except Exception:
-            siosia = []
-    # sorted(siosia)
-    context['siosia'] = siosia
+    context['siosia'] = khuijson('siosia.json')
+    context['tuasia'] = khuijson('tuasia.json')
     return render(request, 'kpapp/index.html', context)
