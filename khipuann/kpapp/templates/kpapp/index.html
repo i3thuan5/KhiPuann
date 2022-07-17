@@ -17,17 +17,12 @@
 	<header class="row justify-content-center mb-4">
 		<div class="col-12 col-lg-8">
 			<h1>Khí-puânn</h1>
-			<small>台語線頂齒盤</small>
+			<small>台語線頂齒盤。適合咱手頭猶無輸入法--ê，a̍h-sī看冊查字。</small>
 		</div>
 	</header>
 
 	<main class="row justify-content-center mb-4">
 		<div class="col-12 col-lg-8">
-			<section class="mb-2">
-				<h2>使用說明</h2>
-				<p>下底齒揤揤--leh，羅馬字tī上尾。適合手頭猶無輸入法ê人粗用。</p>
-			</section>
-
 			<section class="row mb-2 ">
 				<div class="col-12 col-lg-6">
 					<h2>大寫齒</h2>
@@ -40,9 +35,14 @@
 			</section>
 			<section class="mb-2">
 				<h2>羅馬字結果</h2>
+				<p id="thesi" class="d-none alert alert-success" role="alert"></p>
 				<input id="kiatko" type="text" aria-label="文字結果" class="form-control mb-2"/>
-				<button onclick="khok()" class="btn btn-outline-dark">Khok字</button>
-				<p id="thesi" aria-live="polite"></p>
+				<div class="d-grid mb-2">
+					<button onclick="khok()" class="btn btn-primary">
+					{% include 'svg/clipboard.html' %}
+					Khok字
+					</button>
+				</div>
 			</section>
 		</div>
 	</main>
@@ -79,12 +79,14 @@
 		}
 		function khok(){
 			navigator.clipboard.writeText(kiatko.value).then(function() {
-			  thesi.innerText = 'Async: Copying to clipboard was successful!';
+			  thesi.innerText = 'Copying to clipboard was successful!';
+			  thesi.classList.remove('d-none');
 			  setTimeout(function(){
-			    thesi.innerText = ''
+			    thesi.innerText = '';
+			    thesi.classList.add('d-none');
 			  }, 5000);
 			}, function(err) {
-			  console.error('Async: Could not copy text: ', err);
+			  console.error('Could not copy text: ', err);
 			});
 		}
 
