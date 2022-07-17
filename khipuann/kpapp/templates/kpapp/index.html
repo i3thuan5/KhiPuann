@@ -53,8 +53,25 @@
 
 		for(const b of document.querySelectorAll('button[name="btn"]')){
 			b.addEventListener('click', function(){
-				kiatko.value += b.value;
+				console.log('Click btn:', b.value);//kiatko.value += b.value;
+				// kiatko.setSelectionRange(caret, caret);
+				tshahJi(b.value);
 			})
+		}
+
+		function tshahJi(ji) {
+				console.log('selectionEnd', kiatko.selectionEnd)
+				const kuji = kiatko.value;
+				const insertTokenAt = kiatko.selectionEnd;
+				const sinui = insertTokenAt + ji.length;
+				kiatko.value = (
+					kuji.slice( 0, insertTokenAt ) +
+					ji +
+					kuji.slice( insertTokenAt )
+				);
+				kiatko.selectionStart = sinui;
+				kiatko.selectionEnd = sinui;
+				kiatko.focus();
 		}
 		function piann(){
 			kiatko.value = '';
